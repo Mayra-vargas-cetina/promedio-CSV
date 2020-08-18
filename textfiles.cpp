@@ -14,9 +14,8 @@ using namespace std;
 void parseCSV()
 {
     
-    int suma=0;
-    int num[100];
-    int prom;
+    double suma=0;
+    double prom;
     std::ifstream  data("PromedioCSV.csv"); //Se construye el objeto "data" para importar el archivo .csv
     std::string line;   //Se define una string                 
     std::vector<std::vector<std::string> > parsedCsv; //Se define un vector y dentro se define otro fector que contiene un string
@@ -44,11 +43,13 @@ void parseCSV()
     cout << '\n'; 
 
     for (int i=0; i<parsedCsv.size(); i++){  //For para recorrer el vector 
-    
-         suma=suma+parsedCsv[i][2]; //operacion de suma filtrando valores del vector en la tercera columna
+        stringstream num(parsedCsv[i][2]);  //Se almacena en "num" el contenido de la string que corresponde a la tercera conlumna de datos
+         int x = 0;   //Se inicializa la variable "x" 
+         num >> x;   // Se guarda el contenido de "num" en "x"
+         suma=x+suma;  //Sumador para calcular promedio
         }
     prom=suma/parsedCsv.size(); //division para calcular promedio
-    cout << prom;  //se muestra el valor del promedio       
+    cout<< "El valor del promedio es: " << prom;  //se muestra el valor del promedio       
     
 }
 
